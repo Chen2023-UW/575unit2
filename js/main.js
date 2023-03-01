@@ -1,14 +1,7 @@
-var map = L.map('map').setView([43.07, -89.40], 13)
+var map = L.map('map').setView([-3, -60], 3)
 
 //function to instantiate the Leaflet map
 function createMap(){
-
-    //create the map
-    map = L.map('map', {
-        center: [0, 0],
-        zoom: 2
-    });
-
     //add OSM base tilelayer
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -32,7 +25,7 @@ function onEachFeature(feature, layer) {
 };
 
 //function to retrieve the data and place it on the map
-function getData(map){
+/*function getData(map){
     //load the data
     fetch("data/MadisonAddressPoints.geojson")
         .then(function(response){
@@ -44,10 +37,10 @@ function getData(map){
                 onEachFeature: onEachFeature
             }).addTo(map);
         })  
-};
+};*/
 //function to retrieve the data and place it on the map
 function getData(map){
-    fetch("data/MegaCities.geojson")
+    fetch("data/immtous.geojson")
 		.then(function(response){
 			return response.json();
 		})
