@@ -1,5 +1,6 @@
 var map = L.map('map').setView([-3, -60], 3)
 
+//create leafelt map
 //function to instantiate the Leaflet map
 function createMap(){
     //add OSM base tilelayer
@@ -24,20 +25,8 @@ function onEachFeature(feature, layer) {
     };
 };
 
-//function to retrieve the data and place it on the map
-/*function getData(map){
-    //load the data
-    fetch("data/MadisonAddressPoints.geojson")
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(json){
-            //create a Leaflet GeoJSON layer and add it to the map
-            L.geoJson(json, {
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })  
-};*/
+
+// step 2: Import geoJSON data
 //function to retrieve the data and place it on the map
 function getData(map){
     fetch("data/immtous.geojson")
@@ -45,6 +34,9 @@ function getData(map){
 			return response.json();
 		})
 		.then(function(json){
+            createPropSymbols(json);
+
+            //Step 3. Add circle markers for point features to the map
             var geojsonMarkerOptions = {
                 radius: 6,
                 fillColor: "#ff7800",

@@ -1,6 +1,6 @@
 #map {
-    height: 500px;
-    width: 85%;
+    height: 400px;
+    width: 70%;
     display: inline-block;
 }
 
@@ -9,12 +9,12 @@
 }
 
 #panel {
-    width: 30%;
-    padding: 25px;
+    width: 25%;
+    padding: 20px;
     display: inline-block;
-    vertical-align: center;
+    vertical-align: top;
     text-align: center;
-    line-height: 50px;
+    line-height: 42px;
 }
 
 .range-slider {
@@ -22,21 +22,18 @@
 }
 
 .step {
-	width: 15%;
+	width: 20%;
 }
 
 .step img {
-	width: 75%;
+	width: 100%;
 }
 
-.button{
-    height : 25px
-}
-
-#reverse {  
-    float: left;  
-}
 
 #forward {
     float: right;
+}
+
+#reverse {
+    float: left;
 }
