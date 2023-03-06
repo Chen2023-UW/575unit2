@@ -48,7 +48,7 @@ function calcPropRadius(attValue) {
     var minRadius = 4;
     //Flannery Apperance Compensation formula
     if (attValue > 0)
-      var radius = 1.0 * Math.pow(attValue/minValue,0.2) * minRadius
+      var radius = 1.0 * Math.pow(attValue/minValue,0.25) * minRadius
     else
       var radius = 3
 
@@ -64,7 +64,7 @@ function pointToLayer(feature, latlng, attributes){
 
     //create marker options
     var options = {
-        fillColor: "#ff7800",
+        fillColor: "#ecebe6",
         color: "#000",
         weight: 1,
         opacity: 0.8,
@@ -84,8 +84,8 @@ function pointToLayer(feature, latlng, attributes){
     var popupContent = "<p><b>Country:</b> " + feature.properties.Country + "</p>";
 
     //add formatted attribute to popup content string
-    /*var year = attribute.split("_")[1];
-    popupContent += "<p><b>Population in " + year + ":</b> " + feature.properties[attribute] + " million</p>";*/
+    var year = attribute.split("_")[1];
+    popupContent += "<p><b>Immigrant to US at " + year + ":</b> " + feature.properties[attribute] + ".</p>";
 
     //bind the popup to the circle marker
     layer.bindPopup(popupContent, {
@@ -118,11 +118,11 @@ function updatePropSymbols(attribute){
            layer.setRadius(radius);
 
            //add country to popup content string
-           var popupContent = "<p><b>Country:</b> " + props.country + "</p>";
+           var popupContent = "<p><b>Country:</b> " + props.Country + "</p>";
 
            //add formatted attribute to panel content string
-           /*var year = attribute.split("_")[1];
-           popupContent += "<p><b>Population in " + year + ":</b> " + props[attribute] + " million</p>";*/
+           var year = attribute.split("_")[1];
+           popupContent += "<p><b>Immigrant to US at " + year + ":</b> " + props[attribute] + ".</p>";
 
            //update popup with new content
            popup = layer.getPopup();
@@ -141,8 +141,8 @@ function processData(data){
 
     //push each attribute name into attributes array
     for (var attribute in properties){
-        //only take attributes with population values
-        if (attribute.indexOf("Pop") > -1){
+        //only take attributes with immigrantion values
+        if (attribute.indexOf("imm") > -1){
             attributes.push(attribute);
         };
     };
@@ -157,7 +157,7 @@ function createSequenceControls(attributes){
     document.querySelector("#panel").insertAdjacentHTML('beforeend',slider);
 
     //set slider attributes
-    document.querySelector(".range-slider").max = 6;
+    document.querySelector(".range-slider").max = 19;
     document.querySelector(".range-slider").min = 0;
     document.querySelector(".range-slider").value = 0;
     document.querySelector(".range-slider").step = 1;
@@ -179,11 +179,11 @@ function createSequenceControls(attributes){
             if (step.id == 'forward'){
                 index++;
                 //Step 7: if past the last attribute, wrap around to first attribute
-                index = index > 6 ? 0 : index;
+                index = index > 19 ? 0 : index;
             } else if (step.id == 'reverse'){
                 index--;
                 //Step 7: if past the first attribute, wrap around to last attribute
-                index = index < 0 ? 6 : index;
+                index = index < 0 ? 19 : index;
             };
 
             //Step 8: update slider
