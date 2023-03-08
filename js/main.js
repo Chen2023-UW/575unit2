@@ -1,3 +1,4 @@
+//lab assignment 1 begins
 //define global variables which accessiable from every functions
 var map;
 var dataStats = {};
